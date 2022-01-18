@@ -32,3 +32,41 @@ int main(){
 	findColSum(dPtr,sum2,N,M); 
 	showData(sum2,1,M);
 }
+
+void showData(double *dPtr, int N, int M){
+    cout << fixed << setprecision(2);
+    for(int i = 0; i < N*M; i++){
+        cout << dPtr[i];
+        if(i % M + 1 == M) cout << endl;
+        else cout << " ";
+    }
+}
+void randData(double *dPtr, int N, int M){
+    for(int i = 0; i < N*M; i++){
+        dPtr[i] = rand() % 101 / 100.0;
+    }
+}
+
+void findRowSum(const double *dPtr, double *sum1, int N, int M){
+	double sum = 0;
+	int j = 0;
+	for(int i = 0; i < N*M; i++){
+		sum += dPtr[i];
+		if(i % M + 1 == M){
+			sum1[j++] = sum;
+			sum = 0;
+		}	
+	}
+}
+
+void findColSum(const double *dPtr, double *sum2, int N, int M){
+	for(int i = 0; i < M; i++) sum2[i] = 0;
+	
+    int j = 0;
+	for(int i=0; i < N*M; i++){
+		sum2[j++] += dPtr[i];
+		if(i % M + 1 == M){
+			j = 0;
+		}
+	}
+}
